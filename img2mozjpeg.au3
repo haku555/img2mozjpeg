@@ -1,4 +1,4 @@
-#pragma compile(FileVersion, 1.0.0)
+#pragma compile(FileVersion, 1.1.0)
 
 #include <GuiConstants.au3>
 #include <GUIConstantsEx.au3>
