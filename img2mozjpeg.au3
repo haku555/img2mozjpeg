@@ -1,4 +1,5 @@
-#pragma compile(FileVersion, 1.1.0)
+#pragma compile(FileVersion, 1.1.1)
+$Version = "1.1.1"
 
 #include <GuiConstants.au3>
 #include <GUIConstantsEx.au3>
@@ -91,6 +92,6 @@ While 1
         Case $MenuItem5; WEBサイトへ
             ShellExecute("https://haku.cf")
         Case $MenuItem6; バージョン情報
-            MsgBox(0, "バージョン情報","#-------------------------------------------------------------------------------"& @CRLF &"# img2mozjpeg v1.1.0"& @CRLF &"# 20231022 first. 20231024 modified"& @CRLF &"# script by HK https://haku.cf"& @CRLF &"#-------------------------------------------------------------------------------", 0, $Window)
+            MsgBox(0, "バージョン情報","#-------------------------------------------------------------------------------"& @CRLF &"# img2mozjpeg v"& $Version & @CRLF &"# script by HK https://haku.cf"& @CRLF &"#-------------------------------------------------------------------------------", 0, $Window)
     EndSwitch
 WEnd

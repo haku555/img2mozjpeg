@@ -3,7 +3,7 @@ setlocal enabledelayedexpansion
 pushd "%~1" 2>nul
 
 rem iniファイルを読み込む
-for /f "tokens=1,* delims==" %%a in (%~dp0setting.ini) do (
+for /f "tokens=1,* delims== usebackq" %%a in ("%~dp0setting.ini") do (
     set %%a=%%b
 )
 
