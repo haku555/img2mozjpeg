@@ -1,8 +1,16 @@
 @echo off
+setlocal enabledelayedexpansion
 pushd "%~1" 2>nul
 
-rem 画像圧縮率(0~100)
-set compress=90
+rem iniファイルを読み込む
+for /f "tokens=1,* delims==" %%a in (%~dp0setting.ini) do (
+    set %%a=%%b
+)
+
+rem もしiniファイルにcompress変数が定義されていなければ変数を定義する
+if not defined compress (
+ set compress=90
+)
 
 rem フォルダ入力の場合
 if not errorlevel 1 (
