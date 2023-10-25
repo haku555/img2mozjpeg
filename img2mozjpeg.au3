@@ -1,5 +1,5 @@
-#pragma compile(FileVersion, 1.1.1)
-$Version = "1.1.1"
+#pragma compile(FileVersion, 1.1.2)
+$Version = "1.1.2"
 
 #include <GuiConstants.au3>
 #include <GUIConstantsEx.au3>
@@ -10,7 +10,11 @@ $Version = "1.1.1"
 #include <UpDownConstants.au3>
 #include <Array.au3>
 
-$Window = GUICreate("img2mozjpeg", 380, 360,-1,-1,-1,$WS_EX_ACCEPTFILES) ;$WS_EX_ACCEPTFILES //ファイルドロップを可能にする
+;前回のウィンドウ位置を取得
+$PosX = IniRead("bin\setting.ini", "pos", "x", -1)
+$PosY = IniRead("bin\setting.ini", "pos", "y", -1)
+;メインウィンドウ
+$Window = GUICreate("img2mozjpeg", 380, 360,$PosX,$PosY,-1,$WS_EX_ACCEPTFILES) ;$WS_EX_ACCEPTFILES //ファイルドロップを可能にする
 GUISetBkColor(0xFFFBF0)
 
 $MenuItem1 = GUICtrlCreateMenu("ファイル")
@@ -63,7 +67,10 @@ While 1
     $msg = GUIGetMsg()
     Switch $msg
         Case $GUI_EVENT_CLOSE
-            ;プログラム終了前に画質をiniファイルに書き込む
+            $Pos = WinGetPos($Window) ;ウィンドウ位置・サイズ取得
+            ;プログラム終了前に設定をiniファイルに書き込む
+            IniWrite("bin\setting.ini", "pos", "x", $Pos[0])
+            IniWrite("bin\setting.ini", "pos", "y", $Pos[1])
             IniWrite("bin\setting.ini", "img2mozjpeg", "compress", $CurrentInput)
             Exit
         Case $GUI_EVENT_DROPPED
